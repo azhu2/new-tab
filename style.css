@@ -9,7 +9,7 @@ html, body {
     width: 100%;
     padding-top: 25px;
 
-    font-family: Helvetica, sans-serif;
+    font-family: "open sans";
     color: white;
     text-align: center;
 }
@@ -19,5 +19,7 @@ html, body {
 }
 
 #time {
-    font-size: 100px;
+    font-size: 125px;
+    font-weight: 300;
+    letter-spacing: 5px;
 }
