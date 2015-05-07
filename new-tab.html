@@ -2,8 +2,8 @@
 <head>
     <title>New Tab</title>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-resource.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="angular-resource.js"></script>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:800,400,300" rel="stylesheet" type="text/css">
 
@@ -15,9 +15,15 @@
     <div id="timeDiv" ng-controller="timeController" ng-style="{'background-color':timeString}">
         <div id="date">{{ date }}</div>
         <div id="time">{{ time }}</div>
+
+        <div id="weatherDiv" ng-controller="weatherController">
+            {{ test }}
+            <div id="weatherHeader">Weather at {{ latitude | number:2 }}, {{ longitude | number:2 }}</div>
+        </div>
     </div>
 
     <script src="new-tab.js"></script>
+    <script src="config.js"></script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-var newTabApp = angular.module('newTabApp', [ 'ngResource' ]);
+var newTabApp = angular.module('newTabApp', [ 'ngResource', 'config' ]);
 
 newTabApp.controller('timeController', function($scope, $filter, $timeout){
     function updateTime(){
@@ -16,4 +16,24 @@ newTabApp.controller('timeController', function($scope, $filter, $timeout){
     }
 
     queueUpdate();
+});
+
+newTabApp.controller('weatherController', function($scope, WeatherResource){
+    if(navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(success, error);
+    else
+        console.warn('Geolocation is not enabled in this browser.');
+
+    function success(position){
+        $scope.latitude = position.coords.latitude;
+        $scope.longitude = position.coords.longitude;
+    }
+
+    function error(error){
+        console.warn('ERROR in retrieving geolocation (' + error.code + '): ' + error.message);
+    }
+});
+
+newTabApp.service('WeatherResource', function($resource, config){
+
 });
