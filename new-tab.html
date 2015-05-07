@@ -1,21 +1,21 @@
 <html>
 <head>
-	<title>New Tab</title>
+    <title>New Tab</title>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-resource.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-resource.js"></script>
 
-	<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body ng-app="newTabApp">
 
-	<div id="timeDiv" ng-controller="timeController" ng-style="{'background-color':timeString}">
-		<div id="date">{{ date }}</div>
-		<div id="time">{{ time }}</div>
-	</div>
+    <div id="timeDiv" ng-controller="timeController" ng-style="{'background-color':timeString}">
+        <div id="date">{{ date }}</div>
+        <div id="time">{{ time }}</div>
+    </div>
 
-	<script src="new-tab.js"></script>
+    <script src="new-tab.js"></script>
 
 </body>
 </html>
