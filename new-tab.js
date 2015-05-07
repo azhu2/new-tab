@@ -18,35 +18,38 @@ newTabApp.controller('timeController', function($scope, $filter, $timeout){
     queueUpdate();
 });
 
-newTabApp.controller('locationController', function($scope, GeocodingResource){
-    var latitude;
-    var longitude;
-
-    if(navigator.geolocation)
-        navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
-    else
-        console.warn('Geolocation is not enabled in this browser.');
-
-    function geolocationSuccess(position){
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
+newTabApp.controller('locationController', function($scope, GeolocationResource, GeocodingResource){
+    GeolocationResource.getLocation(function(coords){
+        var latitude = coords.latitude;
+        var longitude = coords.longitude;
         $scope.latitude = latitude;
         $scope.longitude = longitude;
 
-        GeocodingResource.reverseGeocode(latitude, longitude).get(
-        function(data){
+        GeocodingResource.reverseGeocode(latitude, longitude).get(function(data){
             $scope.location = data.results[0].formatted_address;
         });
-
-    }
-
-    function geolocationError(error){
-        console.warn('ERROR in retrieving geolocation (' + error.code + '): ' + error.message);
-    }
+    });
 });
 
 newTabApp.service('WeatherResource', function($resource, config){
 
+});
+
+newTabApp.service('GeolocationResource', function($resource){
+    this.getLocation = function(callback){
+        if(navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(success, error);
+        else
+            console.warn('Geolocation is not enabled in this browser.');
+
+        function success(position){
+            callback(position.coords);
+        }
+
+        function error(error){
+            console.warn('ERROR in retrieving geolocation (' + error.code + '): ' + error.message);
+        }
+    };
 });
 
 newTabApp.service('GeocodingResource', function($resource, config){
