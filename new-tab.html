@@ -17,8 +17,11 @@
         <div id="time">{{ time }}</div>
 
         <div id="locationDiv" ng-controller="locationController">
-            {{ test }}
             <div id="locationHeader">{{ location }} ({{ latitude | number:2 }}, {{ longitude | number:2 }})</div>
+        </div>
+
+        <div id="weatherDiv" ng-controller="weatherController">
+            
         </div>
     </div>
 

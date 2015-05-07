@@ -31,8 +31,15 @@ newTabApp.controller('locationController', function($scope, GeolocationResource,
     });
 });
 
-newTabApp.service('WeatherResource', function($resource, config){
+newTabApp.controller('weatherController', function($scope, GeolocationResource, WeatherResource){
+    GeolocationResource.getLocation(function(coords){
+        var latitude = coords.latitude;
+        var longitude = coords.longitude;
 
+        WeatherResource.getWeather(latitude, longitude).get(function(data){
+
+        });
+    });
 });
 
 newTabApp.service('GeolocationResource', function($resource){
@@ -58,5 +65,13 @@ newTabApp.service('GeocodingResource', function($resource, config){
         return $resource('https://maps.googleapis.com/maps/api/geocode/json?latlng=' 
             + latitude + ',' + longitude + '&key=' + apiKey 
             + '&result_type=locality');
+    };
+});
+
+newTabApp.service('WeatherResource', function($resource, config){
+    this.getWeather = function(latitude, longitude){
+        var apiKey = config.forecastioApiKey;
+        return $resource('https://api.forecast.io/forecast/' 
+            + apiKey + '/' + latitude + ',' + longitude);
     };
 });
