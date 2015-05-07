@@ -18,7 +18,7 @@ newTabApp.controller('timeController', function($scope, $filter, $timeout){
     queueUpdate();
 });
 
-newTabApp.controller('weatherController', function($scope, WeatherResource, GeocodingResource){
+newTabApp.controller('locationController', function($scope, GeocodingResource){
     var latitude;
     var longitude;
 
