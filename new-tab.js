@@ -18,22 +18,42 @@ newTabApp.controller('timeController', function($scope, $filter, $timeout){
     queueUpdate();
 });
 
-newTabApp.controller('weatherController', function($scope, WeatherResource){
+newTabApp.controller('weatherController', function($scope, WeatherResource, GeocodingResource){
+    var latitude;
+    var longitude;
+
     if(navigator.geolocation)
-        navigator.geolocation.getCurrentPosition(success, error);
+        navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
     else
         console.warn('Geolocation is not enabled in this browser.');
 
-    function success(position){
-        $scope.latitude = position.coords.latitude;
-        $scope.longitude = position.coords.longitude;
+    function geolocationSuccess(position){
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        $scope.latitude = latitude;
+        $scope.longitude = longitude;
+
+        GeocodingResource.reverseGeocode(latitude, longitude).get(
+        function(data){
+            $scope.location = data.results[0].formatted_address;
+        });
+
     }
 
-    function error(error){
+    function geolocationError(error){
         console.warn('ERROR in retrieving geolocation (' + error.code + '): ' + error.message);
     }
 });
 
 newTabApp.service('WeatherResource', function($resource, config){
 
+});
+
+newTabApp.service('GeocodingResource', function($resource, config){
+    this.reverseGeocode = function(latitude, longitude){
+        var apiKey = config.googleApiKey;
+        return $resource('https://maps.googleapis.com/maps/api/geocode/json?latlng=' 
+            + latitude + ',' + longitude + '&key=' + apiKey 
+            + '&result_type=locality');
+    };
 });
