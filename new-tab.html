@@ -8,6 +8,7 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:800,400,300" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/weather-icons.css">
 </head>
 
 <body ng-app="newTabApp">
@@ -23,12 +24,14 @@
         <div id="weatherDiv" ng-controller="weatherController">
             <div id="current">
                 <div class="heading">Now:</div>
+                <div class="icon"><i class="wi {{ weather.currently.icon | iconFilter }}"></i></div>
                 <div class="summary">{{ weather.currently.summary }}</div>
-                <div class="temperature">{{ weather.currently.temperature }}<span class="apparent">({{ weather.currently.apparentTemperature }})</span></div>
-                <div class="pressure">{{ weather.currently.pressure }}</div>
+                <div class="temperature">
+                    <i class="wi wi-thermometer"></i> {{ weather.currently.temperature }}<i class="wi wi-degrees"></i>
+                    <span class="apparent">({{ weather.currently.apparentTemperature }}<i class="wi wi-degrees"></i>)</span>
+                </div>
                 <div class="wind">
-                    <span class="speed">{{ weather.currently.windSpeed }}<span>
-                    <span class="bearing">{{ weather.currently.windBearing }}</span>
+                    <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{ weather.currently.windBearing | windBearingFilter }}-deg"></i> {{ weather.currently.windSpeed }}
                 </div>
             </div>
         </div>
