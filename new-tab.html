@@ -27,11 +27,11 @@
                 <div class="icon"><i class="wi {{ weather.currently.icon | iconFilter }}"></i></div>
                 <div class="summary">{{ weather.currently.summary }}</div>
                 <div class="temperature">
-                    <i class="wi wi-thermometer"></i> {{ weather.currently.temperature }}<i class="wi wi-degrees"></i>
-                    <span class="apparent">({{ weather.currently.apparentTemperature }}<i class="wi wi-degrees"></i>)</span>
+                    <i class="wi wi-thermometer"></i> {{ weather.currently.temperature | number:1 }}<i class="wi wi-degrees"></i>
+                    <span class="apparent">({{ weather.currently.apparentTemperature | number:1 }}<i class="wi wi-degrees"></i>)</span>
                 </div>
                 <div class="wind">
-                    <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{ weather.currently.windBearing | windBearingFilter }}-deg"></i> {{ weather.currently.windSpeed }}
+                    <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{ weather.currently.windBearing | windBearingFilter }}-deg"></i> {{ weather.currently.windSpeed }} mph
                 </div>
             </div>
         </div>

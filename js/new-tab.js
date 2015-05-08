@@ -31,15 +31,28 @@ newTabApp.controller('locationController', function($scope, GeolocationResource,
     });
 });
 
-newTabApp.controller('weatherController', function($scope, GeolocationResource, WeatherResource){
-    GeolocationResource.getLocation(function(coords){
-        var latitude = coords.latitude;
-        var longitude = coords.longitude;
+newTabApp.controller('weatherController', function($scope, $timeout, GeolocationResource, WeatherResource){
+    function updateWeather(){
+        GeolocationResource.getLocation(function(coords){
+            var latitude = coords.latitude;
+            var longitude = coords.longitude;
 
-        WeatherResource.getWeather(latitude, longitude).get(function(data){
-            $scope.weather = data;
+            WeatherResource.getWeather(latitude, longitude).get(function(data){
+                $scope.weather = data;
+            });
         });
-    });
+    };
+
+    // Refresh weather once an hour
+    function queueUpdate(){
+        weatherTimeoutId = $timeout(function(){
+            updateWeather();
+            queueUpdate();
+        }, 3600000);
+    }
+
+    updateWeather();
+    queueUpdate();
 });
 
 newTabApp.service('GeolocationResource', function($resource){
@@ -105,7 +118,7 @@ newTabApp.filter('iconFilter', function(){
 });
 
 // Bearing is reported in direction wind is from, but icons have it backwards.
-// Also round to closest 15 degrees
+// Also round to nearest 15 degrees
 newTabApp.filter('windBearingFilter', function(){
     return function(bearing){
         var newBearing = Math.round(bearing / 15) * 15;
