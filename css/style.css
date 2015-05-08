@@ -16,8 +16,8 @@ html, body {
 }
 
 #locationDiv {
-    padding-top: 1em;
-    padding-bottom: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
     font-size: 0.8em;
 }
 
@@ -31,10 +31,36 @@ html, body {
     letter-spacing: .02em;
 }
 
+#weatherDiv {
+    margin-top: 3em;
+}
+
 #weatherDiv #current {
     font-size: 1.5em;
 }
 
 #weatherDiv .icon {
     font-size: 2em;
+}
+
+#weatherDiv #forecast {
+    margin-top: 3em;
+}
+
+#weatherDiv #forecast > div {
+    display: inline-block;
+    width: 20%;
+}
+
+#weatherDiv .header {
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+#weatherDiv .summary {
+    font-size: 0.9em;
+}
+
+#weatherDiv .icon {
+    height: 1.2em;
 }

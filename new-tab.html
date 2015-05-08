@@ -26,14 +26,66 @@
                 <div class="icon"><i class="wi {{ weather.currently.icon | iconFilter }}"></i></div>
                 <div class="summary">{{ weather.currently.summary }}</div>
                 <div class="temperature">
-                    <i class="wi wi-thermometer"></i> {{ weather.currently.temperature | number:1 }}<i class="wi wi-degrees"></i>
-                    <span class="apparent">({{ weather.currently.apparentTemperature | number:1 }}<i class="wi wi-degrees"></i>)</span>
+                    <i class="wi wi-thermometer"></i> {{ weather.currently.temperature | number:1 }}<i class="wi wi-fahrenheit"></i>
+                    <span class="apparent">({{ weather.currently.apparentTemperature | number:1 }}<i class="wi wi-fahrenheit"></i>)</span>
                 </div>
                 <div class="wind">
                     <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{ weather.currently.windBearing | windBearingFilter }}-deg"></i> {{ weather.currently.windSpeed | number:1 }} mph
                 </div>
                 <div class="precipitation">
-                    <i class="wi wi-umbrella"></i> {{ weather.currently.precipProbability * 100 | number:0}}% <span ng-hide="weather.currently.precipProbability === 0">({{ weather.currently.precipProbability === 0 }} in/hr)</span>
+                    <i class="wi wi-umbrella"></i> {{ weather.currently.precipProbability * 100 | number:0}}% <span ng-hide="weather.currently.precipProbability === 0">({{ weather.currently.precipIntensity }} in/hr {{ weather.currently.precipType }})</span>
+                </div>
+            </div>
+
+            <div id="forecast">
+                <div id="hour">
+                    <div class="header">Next Hour</div>
+                    <div class="icon"><i class="wi {{ weather.hourly.data[0].icon | iconFilter }}"></i></div>
+                    <div class="summary">{{ weather.hourly.data[0].summary }}</div>
+                    <div class="temperature">
+                        <i class="wi wi-thermometer"></i> {{ weather.hourly.data[0].temperature | number:1 }}<i class="wi wi-fahrenheit"></i>
+                        <span class="apparent">({{ weather.hourly.data[0].apparentTemperature | number:1 }}<i class="wi wi-fahrenheit"></i>)</span>
+                    </div>
+                    <div class="wind">
+                        <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{ weather.hourly.data[0].windBearing | windBearingFilter }}-deg"></i> {{ weather.hourly.data[0].windSpeed | number:1 }} mph
+                    </div>
+                    <div class="precipitation">
+                        <i class="wi wi-umbrella"></i> {{ weather.hourly.data[0].precipProbability * 100 | number:0}}% <span ng-hide="weather.hourly.data[0].precipProbability === 0">({{ weather.hourly.data[0].precipType }})</span>
+                    </div>
+                </div>
+
+                <div id="today">
+                    <div class="header">Today</div>
+                    <div class="icon"><i class="wi {{ weather.daily.data[0].icon | iconFilter }}"></i></div>
+                    <div class="summary">{{ weather.daily.data[0].summary }}</div>
+                    <div class="temperature">
+                        <i class="min wi wi-thermometer"></i> {{ weather.daily.data[0].temperatureMin | number:0 }}<i class="wi wi-fahrenheit"></i>
+                        /
+                        <span class="max">{{ weather.daily.data[0].temperatureMax | number:0 }}<i class="wi wi-fahrenheit"></i></span>
+                    </div>
+                    <div class="wind">
+                        <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{ weather.daily.data[0].windBearing | windBearingFilter }}-deg"></i> {{ weather.daily.data[0].windSpeed | number:1 }} mph
+                    </div>
+                    <div class="precipitation">
+                        <i class="wi wi-umbrella"></i> {{ weather.daily.data[0].precipProbability * 100 | number:0}}% <span ng-hide="weather.daily.data[0].precipProbability === 0">({{ weather.daily.data[0].precipType }})</span>
+                    </div>
+                </div>
+
+                <div id="tomorrow">
+                    <div class="header">Tomorrow</div>
+                    <div class="icon"><i class="wi {{ weather.daily.data[1].icon | iconFilter }}"></i></div>
+                    <div class="summary">{{ weather.daily.data[1].summary }}</div>
+                    <div class="temperature">
+                        <i class="min wi wi-thermometer"></i> {{ weather.daily.data[1].temperatureMin | number:0 }}<i class="wi wi-fahrenheit"></i>
+                        /
+                        <span class="max">{{ weather.daily.data[1].temperatureMax | number:0 }}<i class="wi wi-fahrenheit"></i></span>
+                    </div>
+                    <div class="wind">
+                        <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{ weather.daily.data[1].windBearing | windBearingFilter }}-deg"></i> {{ weather.daily.data[1].windSpeed | number:1 }} mph
+                    </div>
+                    <div class="precipitation">
+                        <i class="wi wi-umbrella"></i> {{ weather.daily.data[1].precipProbability * 100 | number:0}}% <span ng-hide="weather.daily.data[1].precipProbability === 0">({{ weather.daily.data[1].precipType }})</span>
+                    </div>
                 </div>
             </div>
         </div>
