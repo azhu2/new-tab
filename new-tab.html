@@ -2,12 +2,12 @@
 <head>
     <title>New Tab</title>
 
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-resource.js"></script>
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-resource.js"></script>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:800,400,300" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body ng-app="newTabApp">
@@ -21,12 +21,21 @@
         </div>
 
         <div id="weatherDiv" ng-controller="weatherController">
-
+            <div id="current">
+                <div class="heading">Now:</div>
+                <div class="summary">{{ weather.currently.summary }}</div>
+                <div class="temperature">{{ weather.currently.temperature }}<span class="apparent">({{ weather.currently.apparentTemperature }})</span></div>
+                <div class="pressure">{{ weather.currently.pressure }}</div>
+                <div class="wind">
+                    <span class="speed">{{ weather.currently.windSpeed }}<span>
+                    <span class="bearing">{{ weather.currently.windBearing }}</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="new-tab.js"></script>
-    <script src="config.js"></script>
+    <script src="js/new-tab.js"></script>
+    <script src="js/config.js"></script>
 
 </body>
 </html>

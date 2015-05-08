@@ -37,7 +37,7 @@ newTabApp.controller('weatherController', function($scope, GeolocationResource, 
         var longitude = coords.longitude;
 
         WeatherResource.getWeather(latitude, longitude).get(function(data){
-
+            $scope.weather = data;
         });
     });
 });
