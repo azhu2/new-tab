@@ -7,12 +7,18 @@ html, body {
 #timeDiv {
     height: 100%;
     width: 100%;
-    padding-top: 25px;
+    padding-top: 1em;
 
     font-family: "open sans";
     color: white;
     text-align: center;
     font-size: 1vw;
+}
+
+#locationDiv {
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    font-size: 0.8em;
 }
 
 #date {
@@ -23,4 +29,12 @@ html, body {
     font-size: 10em;
     font-weight: 300;
     letter-spacing: .02em;
+}
+
+#weatherDiv #current {
+    font-size: 1.5em;
+}
+
+#weatherDiv .icon {
+    font-size: 2em;
 }

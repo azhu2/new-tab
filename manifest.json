@@ -5,5 +5,6 @@
   "chrome_url_overrides" : {
     "newtab": "new-tab.html"
   },
-  "permissions": ["geolocation", "https://api.forecast.io/"]
+  "permissions": ["geolocation", "https://api.forecast.io/"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

@@ -14,16 +14,15 @@
 <body ng-app="newTabApp">
 
     <div id="timeDiv" ng-controller="timeController" ng-style="{'background-color':timeString}">
+        <div id="locationDiv" ng-controller="locationController">
+            {{ location }} ({{ latitude | number:2 }}, {{ longitude | number:2 }})
+        </div>
+
         <div id="date">{{ date }}</div>
         <div id="time">{{ time }}</div>
 
-        <div id="locationDiv" ng-controller="locationController">
-            <div id="locationHeader">{{ location }} ({{ latitude | number:2 }}, {{ longitude | number:2 }})</div>
-        </div>
-
         <div id="weatherDiv" ng-controller="weatherController">
             <div id="current">
-                <div class="heading">Now:</div>
                 <div class="icon"><i class="wi {{ weather.currently.icon | iconFilter }}"></i></div>
                 <div class="summary">{{ weather.currently.summary }}</div>
                 <div class="temperature">
@@ -31,7 +30,10 @@
                     <span class="apparent">({{ weather.currently.apparentTemperature | number:1 }}<i class="wi wi-degrees"></i>)</span>
                 </div>
                 <div class="wind">
-                    <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{ weather.currently.windBearing | windBearingFilter }}-deg"></i> {{ weather.currently.windSpeed }} mph
+                    <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{ weather.currently.windBearing | windBearingFilter }}-deg"></i> {{ weather.currently.windSpeed | number:1 }} mph
+                </div>
+                <div class="precipitation">
+                    <i class="wi wi-umbrella"></i> {{ weather.currently.precipProbability * 100 | number:0}}% <span ng-hide="weather.currently.precipProbability === 0">({{ weather.currently.precipProbability === 0 }} in/hr)</span>
                 </div>
             </div>
         </div>
