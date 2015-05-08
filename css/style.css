@@ -4,6 +4,10 @@ html, body {
     padding: 0px;
 }
 
+a {
+    color: white;
+}
+
 #timeDiv {
     height: 100%;
     width: 100%;
@@ -30,6 +34,7 @@ html, body {
     font-size: 10em;
     font-weight: 300;
     letter-spacing: .02em;
+    margin: 0.1em;
 }
 
 #weatherDiv {
@@ -64,4 +69,11 @@ html, body {
 
 #weatherDiv .icon {
     height: 1.2em;
+}
+
+#about{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.8em;
 }
