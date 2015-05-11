@@ -41,7 +41,7 @@
                 <div id="hour">
                     <div class="header">Next Hour</div>
                     <div class="icon"><i class="wi {{ weather.hourly.data[0].icon | iconFilter }}"></i></div>
-                    <div class="summary">{{ weather.hourly.data[0].summary }}</div>
+                    <div class="summary">{{ weather.minutely.summary }}</div>
                     <div class="temperature">
                         <i class="wi wi-thermometer"></i> {{ weather.hourly.data[0].temperature | number:1 }}<i class="wi wi-fahrenheit"></i>
                         <span class="apparent">({{ weather.hourly.data[0].apparentTemperature | number:1 }}<i class="wi wi-fahrenheit"></i>)</span>
@@ -57,7 +57,7 @@
                 <div id="today">
                     <div class="header">Today</div>
                     <div class="icon"><i class="wi {{ weather.daily.data[0].icon | iconFilter }}"></i></div>
-                    <div class="summary">{{ weather.daily.data[0].summary }}</div>
+                    <div class="summary">{{ weather.hourly.summary }}</div>
                     <div class="temperature">
                         <i class="min wi wi-thermometer"></i> {{ weather.daily.data[0].temperatureMin | number:0 }}<i class="wi wi-fahrenheit"></i>
                         /
