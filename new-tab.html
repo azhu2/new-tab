@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="css/weather-icons.css">
 </head>
 
-<body ng-app="newTabApp">
+<body ng-app="newTabApp" ng-controller="locationController">
 
     <div id="timeDiv" ng-controller="timeController" ng-style="{'background-color':timeString}">
-        <div id="locationDiv" ng-controller="locationController">
+        <div id="locationDiv">
             {{ location }} ({{ latitude | number:2 }}, {{ longitude | number:2 }})
         </div>
 
@@ -108,6 +108,7 @@
     <script src="js/resources/geolocation-resource.js"></script>
     <script src="js/resources/geocoding-resource.js"></script>
     <script src="js/resources/weather-resource.js"></script>
+    <script src="js/resources/timezone-resource.js"></script>
     <script src="js/filters/wind-bearing-filter.js"></script>
     <script src="js/filters/icon-filter.js"></script>
 

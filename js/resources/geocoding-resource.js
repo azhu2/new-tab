@@ -6,4 +6,3 @@ newTabApp.service('GeocodingResource', function($resource, config){
             + '&result_type=locality');
     };
 });
-
