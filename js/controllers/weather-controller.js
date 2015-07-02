@@ -1,4 +1,4 @@
-newTabApp.controller('weatherController', function($scope, $timeout, GeolocationResource, WeatherResource){
+newTabApp.controller('weatherController', function($scope, $timeout, GeolocationResource, WeatherResource, ngDialog){
     function updateWeather(){
         GeolocationResource.getLocation(function(coords){
             var latitude = coords.latitude;
@@ -6,6 +6,18 @@ newTabApp.controller('weatherController', function($scope, $timeout, Geolocation
 
             WeatherResource.getWeather(latitude, longitude).get(function(data){
                 $scope.weather = data;
+            });
+
+            WeatherResource.getNoaaWeather(latitude, longitude).get(function(data){
+                var hazards = data.data.hazard;
+                var alerts = [];
+                for(var i = 0; i < hazards.length; i++){
+                    alerts.push({
+                        text: hazards[i],
+                        link: data.data.hazardUrl[i]
+                    });
+                }
+                $scope.alerts = alerts;
             });
         });
     };
@@ -20,5 +32,14 @@ newTabApp.controller('weatherController', function($scope, $timeout, Geolocation
 
     updateWeather();
     queueUpdate();
+
+    $scope.open = function() {
+        ngDialog.open({
+            template: 'templates/alerts.html',
+            className: 'ngdialog-theme-custom',
+            controller: 'alertsController',
+            scope: $scope
+        });
+    };
 });
 

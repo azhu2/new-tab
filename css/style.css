@@ -81,3 +81,51 @@ html, body {
 #about a{
     color: rgba(255, 255, 255, 0.4);
 }
+
+.ngdialog-theme-custom {
+    font-size: 1vw;
+    width: 12em;
+    position: relative;
+    left: 50%;
+    top: 35em;
+    border: 1px white dotted;
+}
+
+.ngdialog-close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+}
+
+.ngdialog-overlay {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+#alerts .alert {
+    position: relative;
+    left: 1em;
+    width: 80%;
+    font-size: 0.8em;
+    height: 1.5em;
+}
+
+#alerts .alert a {
+    color: white;
+    text-decoration: none;
+}
+
+#alertsIcon i {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+#alertsIcon {
+    position: relative;
+    top: 0.5em;
+}
+
+#alertsIcon :focus {
+    outline: 0;
+}
