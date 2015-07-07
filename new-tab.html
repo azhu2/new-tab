@@ -36,7 +36,7 @@
                     <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{weather.currently.windBearing | windBearingFilter}}-deg"></i> {{weather.currently.windSpeed | number:1}} mph
                 </div>
                 <div class="precipitation">
-                    <i class="wi wi-umbrella"></i> {{weather.currently.precipProbability * 100 | number:0}}% <span ng-hide="weather.currently.precipProbability === 0">({{weather.currently.precipIntensity}} in/hr {{weather.currently.precipType}})</span>
+                    <i class="wi wi-umbrella"></i> {{weather.currently.precipProbability * 100 | number:0}}% <span ng-if="weather.currently.precipProbability > 0">({{weather.currently.precipIntensity}} in/hr {{weather.currently.precipType}})</span>
                 </div>
             </div>
             <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="open()">
@@ -56,7 +56,7 @@
                         <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{weather.hourly.data[0].windBearing | windBearingFilter}}-deg"></i> {{weather.hourly.data[0].windSpeed | number:1}} mph
                     </div>
                     <div class="precipitation">
-                        <i class="wi wi-umbrella"></i> {{weather.hourly.data[0].precipProbability * 100 | number:0}}% <span ng-hide="weather.hourly.data[0].precipProbability === 0">({{weather.hourly.data[0].precipType}})</span>
+                        <i class="wi wi-umbrella"></i> {{weather.hourly.data[0].precipProbability * 100 | number:0}}% <span ng-if="weather.hourly.data[0].precipProbability > 0">({{weather.hourly.data[0].precipType}})</span>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@
                         <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{weather.daily.data[0].windBearing | windBearingFilter}}-deg"></i> {{weather.daily.data[0].windSpeed | number:1}} mph
                     </div>
                     <div class="precipitation">
-                        <i class="wi wi-umbrella"></i> {{weather.daily.data[0].precipProbability * 100 | number:0}}% <span ng-hide="weather.daily.data[0].precipProbability === 0">({{weather.daily.data[0].precipType}})</span>
+                        <i class="wi wi-umbrella"></i> {{weather.daily.data[0].precipProbability * 100 | number:0}}% <span ng-if="weather.daily.data[0].precipProbability > 0">({{weather.daily.data[0].precipType}})</span>
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
                         <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{weather.daily.data[1].windBearing | windBearingFilter}}-deg"></i> {{weather.daily.data[1].windSpeed | number:1}} mph
                     </div>
                     <div class="precipitation">
-                        <i class="wi wi-umbrella"></i> {{weather.daily.data[1].precipProbability * 100 | number:0}}% <span ng-hide="weather.daily.data[1].precipProbability === 0">({{weather.daily.data[1].precipType}})</span>
+                        <i class="wi wi-umbrella"></i> {{weather.daily.data[1].precipProbability * 100 | number:0}}% <span ng-if="weather.daily.data[1].precipProbability > 0">({{weather.daily.data[1].precipType}})</span>
                     </div>
                 </div>
             </div>
