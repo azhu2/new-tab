@@ -65,9 +65,9 @@
                     <div class="icon"><i class="wi {{weather.daily.data[0].icon | iconFilter}}"></i></div>
                     <div class="summary">{{weather.hourly.summary}}</div>
                     <div class="temperature">
-                        <i class="min wi wi-thermometer"></i> {{weather.daily.data[0].temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i>
+                        <i class="min wi wi-thermometer"></i> {{weather.daily.data[0].temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i>
                         /
-                        <span class="max">{{weather.daily.data[0].temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i></span>
+                        <span class="max">{{weather.daily.data[0].temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i></span>
                     </div>
                     <div class="wind">
                         <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{weather.daily.data[0].windBearing | windBearingFilter}}-deg"></i> {{weather.daily.data[0].windSpeed | number:1}} mph
@@ -82,9 +82,9 @@
                     <div class="icon"><i class="wi {{weather.daily.data[1].icon | iconFilter}}"></i></div>
                     <div class="summary">{{weather.daily.data[1].summary}}</div>
                     <div class="temperature">
-                        <i class="min wi wi-thermometer"></i> {{weather.daily.data[1].temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i>
+                        <i class="min wi wi-thermometer"></i> {{weather.daily.data[1].temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i>
                         /
-                        <span class="max">{{weather.daily.data[1].temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i></span>
+                        <span class="max">{{weather.daily.data[1].temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i></span>
                     </div>
                     <div class="wind">
                         <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{weather.daily.data[1].windBearing | windBearingFilter}}-deg"></i> {{weather.daily.data[1].windSpeed | number:1}} mph
