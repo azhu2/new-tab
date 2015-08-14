@@ -14,7 +14,7 @@ newTabApp.controller('weatherController', function($scope, $timeout, Geolocation
                 for(var i = 0; i < hazards.length; i++){
                     alerts.push({
                         text: hazards[i],
-                        link: data.data.hazardUrl[i]
+                        link: data.data.hazardUrl[i].replace('&amp;', '&')
                     });
                 }
                 $scope.alerts = alerts;
