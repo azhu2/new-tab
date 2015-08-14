@@ -1,4 +1,4 @@
-newTabApp.controller('weatherController', function($scope, $timeout, GeolocationResource, WeatherResource, ngDialog){
+newTabApp.controller('weatherController', function($scope, $timeout, GeolocationResource, WeatherResource, ngDialog, config){
     function updateWeather(){
         GeolocationResource.getLocation(function(coords){
             var latitude = coords.latitude;
@@ -27,7 +27,7 @@ newTabApp.controller('weatherController', function($scope, $timeout, Geolocation
         weatherTimeoutId = $timeout(function(){
             updateWeather();
             queueUpdate();
-        }, 3600000);
+        }, config.weatherRefreshInterval);
     }
 
     updateWeather();

@@ -1,1 +1,1 @@
-var newTabApp = angular.module('newTabApp', ['ngResource', 'config', 'ngDialog']);
+var newTabApp = angular.module('newTabApp', ['ngResource', 'config', 'api_keys', 'ngDialog']);

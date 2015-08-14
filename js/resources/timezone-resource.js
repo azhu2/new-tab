@@ -1,6 +1,6 @@
-newTabApp.service('TimezoneResource', function($resource, config){
+newTabApp.service('TimezoneResource', function($resource, api_keys){
     this.timezone = function(latitude, longitude){
-        var apiKey = config.googleApiKey;
+        var apiKey = api_keys.googleApiKey;
         var time = new Date();
         var utcSeconds = time.getTime() / 1000;
         return $resource('https://maps.googleapis.com/maps/api/timezone/json?location=' 
