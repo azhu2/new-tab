@@ -18,7 +18,7 @@
 
     <div id="timeDiv" ng-controller="timeController" ng-style="{'background-color':timeString}">
         <div id="locationDiv">
-            {{location}} ({{latitude | number:2}}, {{longitude | number:2}})
+            {{location}} ({{latitude | latitudeFilter}}, {{longitude | longitudeFilter}})
         </div>
 
         <div id="date">{{date}}</div>
@@ -119,6 +119,6 @@
     <script src="js/resources/timezone-resource.js"></script>
     <script src="js/filters/wind-bearing-filter.js"></script>
     <script src="js/filters/icon-filter.js"></script>
-
+    <script src="js/filters/lat-long-filters.js"></script>
 </body>
 </html>
