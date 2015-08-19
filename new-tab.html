@@ -36,7 +36,7 @@
                     <i class="wi wi-strong-wind"></i> <i class="wi wi-wind-default _{{weather.currently.windBearing | windBearingFilter}}-deg"></i> {{weather.currently.windSpeed | number:1}} mph
                 </div>
                 <div class="precipitation">
-                    <i class="wi wi-umbrella"></i> {{weather.currently.precipProbability * 100 | number:0}}% <span ng-if="weather.currently.precipProbability > 0">({{weather.currently.precipIntensity}} in/hr {{weather.currently.precipType}})</span>
+                    <i class="wi wi-umbrella"></i> {{weather.currently.precipProbability * 100 | number:0}}% <span ng-if="weather.currently.precipProbability > 0">({{weather.currently.precipIntensity | number:4}} in/hr {{weather.currently.precipType}})</span>
                 </div>
             </div>
             <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="open()">
