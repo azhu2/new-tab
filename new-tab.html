@@ -28,7 +28,7 @@
 
         <div id="weatherDiv" ng-controller="weatherController">
             <div id="current">
-                <div class="icon"><i class="wi {{weather.currently.icon | iconFilter}}"></i></div>
+                <div class="icon"><i class="wi {{weather.currently.icon | iconFilter:weather.daily.data[0].sunriseTime:weather.daily.data[0].sunsetTime}}"></i></div>
                 <div class="summary">{{weather.currently.summary}}</div>
                 <div class="temperature">
                     <i class="wi wi-thermometer"></i> {{weather.currently.temperature | number:1}}<i class="wi wi-fahrenheit"></i>
@@ -48,7 +48,7 @@
             <div id="forecast">
                 <div id="hour">
                     <div class="header">Next Hour</div>
-                    <div class="icon"><i class="wi {{weather.hourly.data[0].icon | iconFilter}}"></i></div>
+                    <div class="icon"><i class="wi {{weather.hourly.data[0].icon | iconFilter:weather.daily.data[0].sunriseTime:weather.daily.data[0].sunsetTime}}"></i></div>
                     <div class="summary">{{weather.minutely.summary}}</div>
                     <div class="temperature">
                         <i class="wi wi-thermometer"></i> {{weather.hourly.data[0].temperature | number:1}}<i class="wi wi-fahrenheit"></i>
