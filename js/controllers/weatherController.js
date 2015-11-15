@@ -1,28 +1,15 @@
-newTabApp.controller('weatherController', function($scope, $timeout, GeolocationService, WeatherService, ngDialog, config){
-    function updateWeather(){
-        GeolocationService.getLocation(function(coords){
-            var latitude = coords.latitude;
-            var longitude = coords.longitude;
-
-            WeatherService.getWeather().then(function(data) {
-                $scope.weather = data;
-            });
-            WeatherService.getAlerts().then(function(data) {
-                $scope.alerts = data;
-            });
+newTabApp.controller('weatherController', function($scope, $rootScope, WeatherService, ngDialog, config){
+    $rootScope.$on('weatherChanged', function() {
+        WeatherService.getWeather().then(function(data) {
+            $scope.weather = data;
         });
-    };
+    });
 
-    // Refresh weather once an hour
-    function queueUpdate(){
-        weatherTimeoutId = $timeout(function(){
-            updateWeather();
-            queueUpdate();
-        }, config.weatherRefreshInterval);
-    }
-
-    updateWeather();
-    queueUpdate();
+    $rootScope.$on('noaaWeatherChanged', function() {
+        WeatherService.getAlerts().then(function(data) {
+            $scope.alerts = data;
+        });
+    });
 
     $scope.open = function() {
         ngDialog.open({

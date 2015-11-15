@@ -1,4 +1,4 @@
-newTabApp.factory('WeatherService', function($q, $resource, $timeout, api_keys, config, GeolocationService){
+newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout, api_keys, config, GeolocationService){
     var apiKey = api_keys.forecastioApiKey;
     var latitude;
     var longitude;
@@ -16,13 +16,15 @@ newTabApp.factory('WeatherService', function($q, $resource, $timeout, api_keys, 
     function updateWeather(){
         $resource('https://api.forecast.io/forecast/' + apiKey + '/' + latitude + ',' + longitude).get(function(data) {
             weatherData.resolve(data);
+            $rootScope.$broadcast('weatherChanged');
         });
         $resource('http://forecast.weather.gov/MapClick.php'  + '?lat=' + latitude + '&lon=' + longitude + '&FcstType=json').get(function(data) {
             noaaWeatherData.resolve(data);
+            $rootScope.$broadcast('noaaWeatherChanged');
         });
     };
 
-    // Refresh weather once an hour
+    // Refresh weather
     function queueUpdate(){
         weatherTimeoutId = $timeout(function(){
             updateWeather();
