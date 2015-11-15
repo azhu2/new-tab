@@ -4,7 +4,6 @@
 
     <script src="js/_lib/angular.min.js"></script>
     <script src="js/_lib/angular-resource.js"></script>
-    <script src="js/_lib/ngDialog.min.js"></script>
     <script src="js/_lib/jquery-2.1.4.min.js"></script>
     <script src="js/_lib/bootstrap.min.js"></script>
     <script src="js/_lib/ui-bootstrap-tpls-0.9.0.min.js"></script>
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/weather-icons.css">
-    <link rel="stylesheet" href="css/ngDialog.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -43,9 +41,6 @@
                     <i class="wi wi-umbrella"></i> {{weather.currently.precipProbability * 100 | number:0}}% <span ng-if="weather.currently.precipProbability > 0">({{weather.currently.precipIntensity | number:4}} in/hr {{weather.currently.precipType}})</span>
                 </div>
             </div>
-            <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="open()">
-                <i class="fa fa-exclamation-triangle"></i>
-            </a>
             <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()" ng-controller="alertsController">
                 <i class="fa fa-exclamation-triangle"></i>
             </a>

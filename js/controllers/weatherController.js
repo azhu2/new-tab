@@ -1,4 +1,4 @@
-newTabApp.controller('weatherController', function($scope, $rootScope, WeatherService, ngDialog, config){
+newTabApp.controller('weatherController', function($scope, $rootScope, WeatherService){
     $rootScope.$on('weatherChanged', function() {
         WeatherService.getWeather().then(function(data) {
             $scope.weather = data;
@@ -10,14 +10,5 @@ newTabApp.controller('weatherController', function($scope, $rootScope, WeatherSe
             $scope.alerts = data;
         });
     });
-
-    $scope.open = function() {
-        ngDialog.open({
-            template: 'templates/alerts.html',
-            className: 'ngdialog-theme-custom',
-            controller: 'alertsController',
-            scope: $scope
-        });
-    };
 });
 
