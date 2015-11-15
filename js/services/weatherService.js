@@ -1,13 +1,64 @@
-newTabApp.service('WeatherService', function($resource, api_keys){
-    this.getWeather = function(latitude, longitude){
-        var apiKey = api_keys.forecastioApiKey;
-        return $resource('https://api.forecast.io/forecast/' 
-            + apiKey + '/' + latitude + ',' + longitude);
+newTabApp.factory('WeatherService', function($q, $resource, $timeout, api_keys, config, GeolocationService){
+    var apiKey = api_keys.forecastioApiKey;
+    var latitude;
+    var longitude;
+    var weatherData = $q.defer();
+    var noaaWeatherData = $q.defer();
+
+    var init = function() {
+        GeolocationService.getLocation(function(coords) {
+            latitude = coords.latitude;
+            longitude = coords.longitude;
+            updateWeather();
+        });
     };
 
-    this.getNoaaWeather = function(latitude, longitude){
-        return $resource('http://forecast.weather.gov/MapClick.php'
-            + '?lat=' + latitude + '&lon=' + longitude + '&FcstType=json');
+    function updateWeather(){
+        $resource('https://api.forecast.io/forecast/' + apiKey + '/' + latitude + ',' + longitude).get(function(data) {
+            weatherData.resolve(data);
+        });
+        $resource('http://forecast.weather.gov/MapClick.php'  + '?lat=' + latitude + '&lon=' + longitude + '&FcstType=json').get(function(data) {
+            noaaWeatherData.resolve(data);
+        });
+    };
+
+    // Refresh weather once an hour
+    function queueUpdate(){
+        weatherTimeoutId = $timeout(function(){
+            updateWeather();
+            queueUpdate();
+        }, config.weatherRefreshInterval);
+    }
+
+    var getWeather = function(){
+        return weatherData.promise;
+    };
+
+    var getNoaaWeather = function(){
+        return noaaWeatherData.promise;
+    };
+
+    var getAlerts = function() {
+        return getNoaaWeather().then(function(noaaData) {
+            var hazards = noaaData.data.hazard;
+            var alerts = [];
+            for(var i = 0; i < hazards.length; i++){
+                alerts.push({
+                    text: hazards[i],
+                    link: noaaData.data.hazardUrl[i].replace('&amp;', '&')
+                });
+            }
+            return alerts;
+        });
+    };
+
+    init();
+    queueUpdate();
+
+    return {
+        getWeather : getWeather,
+        getNoaaWeather : getNoaaWeather,
+        getAlerts : getAlerts
     };
 });
 

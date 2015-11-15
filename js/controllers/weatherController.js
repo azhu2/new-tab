@@ -4,20 +4,11 @@ newTabApp.controller('weatherController', function($scope, $timeout, Geolocation
             var latitude = coords.latitude;
             var longitude = coords.longitude;
 
-            WeatherService.getWeather(latitude, longitude).get(function(data){
+            WeatherService.getWeather().then(function(data) {
                 $scope.weather = data;
             });
-
-            WeatherService.getNoaaWeather(latitude, longitude).get(function(data){
-                var hazards = data.data.hazard;
-                var alerts = [];
-                for(var i = 0; i < hazards.length; i++){
-                    alerts.push({
-                        text: hazards[i],
-                        link: data.data.hazardUrl[i].replace('&amp;', '&')
-                    });
-                }
-                $scope.alerts = alerts;
+            WeatherService.getAlerts().then(function(data) {
+                $scope.alerts = data;
             });
         });
     };
