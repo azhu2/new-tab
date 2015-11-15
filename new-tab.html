@@ -42,6 +42,9 @@
             <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="open()">
                 <i class="fa fa-exclamation-triangle"></i>
             </a>
+            <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlertsModal()" ng-controller="alertsController">
+                <i class="fa fa-exclamation-triangle"></i>
+            </a>
 
             <div id="forecast">
                 <div id="hour">
@@ -105,6 +108,8 @@
             </div>
         </div>
     </div>
+
+    <div id="alertsModal" ng-include="'templates/alerts.html'" />
 
     <script src="js/new-tab.js"></script>
     <script src="js/api_keys.js"></script>
