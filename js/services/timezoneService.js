@@ -1,4 +1,4 @@
-newTabApp.service('TimezoneResource', function($resource, api_keys){
+newTabApp.service('TimezoneService', function($resource, api_keys){
     this.timezone = function(latitude, longitude){
         var apiKey = api_keys.googleApiKey;
         var time = new Date();

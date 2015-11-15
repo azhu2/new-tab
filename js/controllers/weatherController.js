@@ -1,14 +1,14 @@
-newTabApp.controller('weatherController', function($scope, $timeout, GeolocationResource, WeatherResource, ngDialog, config){
+newTabApp.controller('weatherController', function($scope, $timeout, GeolocationService, WeatherService, ngDialog, config){
     function updateWeather(){
-        GeolocationResource.getLocation(function(coords){
+        GeolocationService.getLocation(function(coords){
             var latitude = coords.latitude;
             var longitude = coords.longitude;
 
-            WeatherResource.getWeather(latitude, longitude).get(function(data){
+            WeatherService.getWeather(latitude, longitude).get(function(data){
                 $scope.weather = data;
             });
 
-            WeatherResource.getNoaaWeather(latitude, longitude).get(function(data){
+            WeatherService.getNoaaWeather(latitude, longitude).get(function(data){
                 var hazards = data.data.hazard;
                 var alerts = [];
                 for(var i = 0; i < hazards.length; i++){

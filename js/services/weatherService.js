@@ -1,4 +1,4 @@
-newTabApp.service('WeatherResource', function($resource, api_keys){
+newTabApp.service('WeatherService', function($resource, api_keys){
     this.getWeather = function(latitude, longitude){
         var apiKey = api_keys.forecastioApiKey;
         return $resource('https://api.forecast.io/forecast/' 
