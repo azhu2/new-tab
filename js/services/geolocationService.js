@@ -1,4 +1,4 @@
-newTabApp.service('GeolocationResource', function($resource){
+newTabApp.service('GeolocationService', function($resource){
     this.getLocation = function(callback){
         if(navigator.geolocation)
             navigator.geolocation.getCurrentPosition(success, error);

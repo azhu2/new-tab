@@ -1,7 +1,7 @@
-newTabApp.controller('timeController', function($scope, $filter, $timeout, TimezoneResource){
+newTabApp.controller('timeController', function($scope, $filter, $timeout, TimezoneService){
     var time = new Date();
     $scope.$on('location-found', function(){
-        TimezoneResource.timezone($scope.latitude, $scope.longitude).get(function(timezoneData){
+        TimezoneService.timezone($scope.latitude, $scope.longitude).get(function(timezoneData){
             var timezone = timezoneData.rawOffset + timezoneData.dstOffset;
             var utcTime = time.getTime() + time.getTimezoneOffset() * 60000;
             time.setTime(utcTime + timezone * 1000);
