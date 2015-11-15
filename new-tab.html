@@ -5,10 +5,14 @@
     <script src="js/_lib/angular.min.js"></script>
     <script src="js/_lib/angular-resource.js"></script>
     <script src="js/_lib/ngDialog.min.js"></script>
+    <script src="js/_lib/jquery-2.1.4.min.js"></script>
+    <script src="js/_lib/bootstrap.min.js"></script>
+    <script src="js/_lib/ui-bootstrap-tpls-0.9.0.min.js"></script>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:800,400,300" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/weather-icons.css">
     <link rel="stylesheet" href="css/ngDialog.css">
     <link rel="stylesheet" href="css/style.css">
@@ -42,7 +46,7 @@
             <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="open()">
                 <i class="fa fa-exclamation-triangle"></i>
             </a>
-            <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlertsModal()" ng-controller="alertsController">
+            <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()" ng-controller="alertsController">
                 <i class="fa fa-exclamation-triangle"></i>
             </a>
 
@@ -109,19 +113,17 @@
         </div>
     </div>
 
-    <div id="alertsModal" ng-include="'templates/alerts.html'" />
-
     <script src="js/newTab.js"></script>
     <script src="js/apiKeys.js"></script>
     <script src="js/config.js"></script>
-    <script src="js/controllers/alertsController.js"></script>
-    <script src="js/controllers/locationController.js"></script>
-    <script src="js/controllers/timeController.js"></script>
-    <script src="js/controllers/weatherController.js"></script>
     <script src="js/services/geolocationService.js"></script>
     <script src="js/services/geocodingService.js"></script>
     <script src="js/services/weatherService.js"></script>
     <script src="js/services/timezoneService.js"></script>
+    <script src="js/controllers/alertsController.js"></script>
+    <script src="js/controllers/locationController.js"></script>
+    <script src="js/controllers/timeController.js"></script>
+    <script src="js/controllers/weatherController.js"></script>
     <script src="js/filters/windBearingFilter.js"></script>
     <script src="js/filters/iconFilter.js"></script>
     <script src="js/filters/latLongFilters.js"></script>
