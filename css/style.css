@@ -48,10 +48,11 @@ html, body {
 }
 
 #weatherDiv #forecast {
-    margin-top: 3em;
+    margin-top: 2em;
 }
 
 #weatherDiv #forecast > div {
+    vertical-align: top;
     display: inline-block;
     width: 20%;
 }
