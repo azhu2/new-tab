@@ -26,7 +26,7 @@ newTabApp.filter('iconFilter', function(){
             }
         }
 
-        var time = new Date().getTime();
+        var time = new Date().getTime() / 1000;
         if(time < sunrise || time > sunset) {   // night
             switch(icon){
                 case 'clear-day':
