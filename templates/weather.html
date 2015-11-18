@@ -15,6 +15,6 @@
         <i class="wi wi-strong-wind"></i> <i class="wi wi-wind towards-{{data.windBearing | windBearingFilter}}-deg"></i> {{data.windSpeed | number:1}} mph
     </div>
     <div class="precipitation">
-        <i class="wi wi-umbrella"></i> {{data.precipProbability * 100 | number:0}}% <span ng-if="data.precipProbability > 0">({{data.precipType}})</span>
+        <i class="wi wi-umbrella"></i> {{data.precipProbability * 100 | number:0}}% <span ng-if="showPrecipDetail && data.precipProbability > 0">({{data.precipIntensity | number:4}} in/hr {{data.precipType}})</span><span ng-if="!showPrecipDetail && data.precipProbability > 0">({{data.precipType}})</span>
     </div>
 </div>

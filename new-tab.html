@@ -28,7 +28,7 @@
         <div id="time">{{time}}</div>
 
         <div id="weatherDiv" ng-controller="weatherController">
-            <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary"></weather-snippet>
+            <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary" show-precip-detail="true"></weather-snippet>
             <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()" ng-controller="alertsController">
                 <i class="fa fa-exclamation-triangle"></i>
             </a>

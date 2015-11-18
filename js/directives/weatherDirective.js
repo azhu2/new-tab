@@ -5,7 +5,8 @@ newTabApp.directive('weatherSnippet', function() {
             data : '=',
             summary : '=',
             day : '=',
-            label : '@'
+            label : '@',
+            showPrecipDetail : '='
         },
         templateUrl: '../../templates/weather.html'
     };
