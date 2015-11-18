@@ -28,74 +28,15 @@
         <div id="time">{{time}}</div>
 
         <div id="weatherDiv" ng-controller="weatherController">
-            <div id="current">
-                <div class="icon"><i class="wi {{weather.currently.icon | iconFilter:weather.daily.data[0].sunriseTime:weather.daily.data[0].sunsetTime}}"></i></div>
-                <div class="summary">{{weather.currently.summary}}</div>
-                <div class="temperature">
-                    <i class="wi wi-thermometer"></i> {{weather.currently.temperature | number:1}}<i class="wi wi-fahrenheit"></i>
-                    <span class="apparent">({{weather.currently.apparentTemperature | number:1}}<i class="wi wi-fahrenheit"></i>)</span>
-                </div>
-                <div class="wind">
-                    <i class="wi wi-strong-wind"></i> <i class="wi wi-wind towards-{{weather.currently.windBearing | windBearingFilter}}-deg"></i> {{weather.currently.windSpeed | number:1}} mph
-                </div>
-                <div class="precipitation">
-                    <i class="wi wi-umbrella"></i> {{weather.currently.precipProbability * 100 | number:0}}% <span ng-if="weather.currently.precipProbability > 0">({{weather.currently.precipIntensity | number:4}} in/hr {{weather.currently.precipType}})</span>
-                </div>
-            </div>
+            <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary"></weather-snippet>
             <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()" ng-controller="alertsController">
                 <i class="fa fa-exclamation-triangle"></i>
             </a>
 
             <div id="forecast">
-                <div id="hour">
-                    <div class="header">Next Hour</div>
-                    <div class="icon"><i class="wi {{weather.hourly.data[0].icon | iconFilter:weather.daily.data[0].sunriseTime:weather.daily.data[0].sunsetTime}}"></i></div>
-                    <div class="summary">{{weather.minutely.summary}}</div>
-                    <div class="temperature">
-                        <i class="wi wi-thermometer"></i> {{weather.hourly.data[0].temperature | number:1}}<i class="wi wi-fahrenheit"></i>
-                        <span class="apparent">({{weather.hourly.data[0].apparentTemperature | number:1}}<i class="wi wi-fahrenheit"></i>)</span>
-                    </div>
-                    <div class="wind">
-                        <i class="wi wi-strong-wind"></i> <i class="wi wi-wind towards-{{weather.hourly.data[0].windBearing | windBearingFilter}}-deg"></i> {{weather.hourly.data[0].windSpeed | number:1}} mph
-                    </div>
-                    <div class="precipitation">
-                        <i class="wi wi-umbrella"></i> {{weather.hourly.data[0].precipProbability * 100 | number:0}}% <span ng-if="weather.hourly.data[0].precipProbability > 0">({{weather.hourly.data[0].precipType}})</span>
-                    </div>
-                </div>
-
-                <div id="today">
-                    <div class="header">Today</div>
-                    <div class="icon"><i class="wi {{weather.daily.data[0].icon | iconFilter}}"></i></div>
-                    <div class="summary">{{weather.hourly.summary}}</div>
-                    <div class="temperature">
-                        <i class="min wi wi-thermometer"></i> {{weather.daily.data[0].temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i>
-                        /
-                        <span class="max">{{weather.daily.data[0].temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i></span>
-                    </div>
-                    <div class="wind">
-                        <i class="wi wi-strong-wind"></i> <i class="wi wi-wind towards-{{weather.daily.data[0].windBearing | windBearingFilter}}-deg"></i> {{weather.daily.data[0].windSpeed | number:1}} mph
-                    </div>
-                    <div class="precipitation">
-                        <i class="wi wi-umbrella"></i> {{weather.daily.data[0].precipProbability * 100 | number:0}}% <span ng-if="weather.daily.data[0].precipProbability > 0">({{weather.daily.data[0].precipType}})</span>
-                    </div>
-                </div>
-
-                <div id="tomorrow">
-                    <div class="header">Tomorrow</div>
-                    <div class="icon"><i class="wi {{weather.daily.data[1].icon | iconFilter}}"></i></div>
-                    <div class="summary">{{weather.daily.data[1].summary}}</div>
-                    <div class="temperature">
-                        <i class="min wi wi-thermometer"></i> {{weather.daily.data[1].temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i>
-                        /
-                        <span class="max">{{weather.daily.data[1].temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i></span>
-                    </div>
-                    <div class="wind">
-                        <i class="wi wi-strong-wind"></i> <i class="wi wi-wind towards-{{weather.daily.data[1].windBearing | windBearingFilter}}-deg"></i> {{weather.daily.data[1].windSpeed | number:1}} mph
-                    </div>
-                    <div class="precipitation">
-                        <i class="wi wi-umbrella"></i> {{weather.daily.data[1].precipProbability * 100 | number:0}}% <span ng-if="weather.daily.data[1].precipProbability > 0">({{weather.daily.data[1].precipType}})</span>
-                    </div>
-                </div>
+                <weather-snippet id="hour" label="Next Hour" data="weather.hourly.data[0]" day="weather.daily.data[0]" summary="weather.minutely.summary"></weather-snippet>
+                <weather-snippet id="today" label="Today" data="weather.daily.data[0]" day="weather.daily.data[0]" summary="weather.hourly.summary"></weather-snippet>
+                <weather-snippet id="tomorrow" label="Tomorrow" data="weather.daily.data[1]" day="weather.daily.data[1]" summary="weather.daily.data[1].summary"></weather-snippet>
             </div>
         </div>
 
@@ -112,6 +53,7 @@
     <script src="js/newTab.js"></script>
     <script src="js/apiKeys.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/directives/weatherDirective.js"></script>
     <script src="js/services/geolocationService.js"></script>
     <script src="js/services/geocodingService.js"></script>
     <script src="js/services/weatherService.js"></script>

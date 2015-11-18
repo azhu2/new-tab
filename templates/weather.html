@@ -1,0 +1,20 @@
+<div class="weather-snippet">
+    <div class="header">{{label}}</div>
+    <div class="icon"><i class="wi {{data.icon | iconFilter:day.sunriseTime:day.sunsetTime}}"></i></div>
+    <div class="summary">{{summary}}</div>
+    <div class="temperature" ng-if="data.temperature">
+        <i class="wi wi-thermometer"></i> {{data.temperature | number:1}}<i class="wi wi-fahrenheit"></i>
+        <span class="apparent">({{data.apparentTemperature | number:1}}<i class="wi wi-fahrenheit"></i>)</span>
+    </div>
+    <div class="temperature" ng-if="data.temperatureMax && data.temperatureMin">
+        <i class="min wi wi-thermometer"></i> {{data.temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i>
+        /
+        <span class="max">{{data.temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i></span>
+    </div>
+    <div class="wind">
+        <i class="wi wi-strong-wind"></i> <i class="wi wi-wind towards-{{data.windBearing | windBearingFilter}}-deg"></i> {{data.windSpeed | number:1}} mph
+    </div>
+    <div class="precipitation">
+        <i class="wi wi-umbrella"></i> {{data.precipProbability * 100 | number:0}}% <span ng-if="data.precipProbability > 0">({{data.precipType}})</span>
+    </div>
+</div>
