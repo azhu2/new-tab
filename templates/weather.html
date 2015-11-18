@@ -7,9 +7,13 @@
         <span class="apparent">({{data.apparentTemperature | number:1}}<i class="wi wi-fahrenheit"></i>)</span>
     </div>
     <div class="temperature" ng-if="data.temperatureMax && data.temperatureMin">
-        <i class="min wi wi-thermometer"></i> {{data.temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i>
+        <a tooltip="{{data.temperatureMaxTime * 1000 | date:'HH:mm'}}" tooltip-placement="bottom" tooltip-animation="true" tooltip-popup-delay="100">
+            <i class="min wi wi-thermometer"></i> {{data.temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i>
+        </a>
         /
-        <span class="max">{{data.temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i></span>
+        <a tooltip="{{data.temperatureMinTime * 1000 | date:'HH:mm'}}" tooltip-placement="bottom" tooltip-animation="true" tooltip-popup-delay="100">
+            {{data.temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i>
+        </a>
     </div>
     <div class="wind">
         <i class="wi wi-strong-wind"></i> <i class="wi wi-wind towards-{{data.windBearing | windBearingFilter}}-deg"></i> {{data.windSpeed | number:1}} mph

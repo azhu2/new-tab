@@ -5,6 +5,11 @@ html, body {
     -webkit-user-select: none;
 }
 
+a, a:hover {
+    color: white;
+    text-decoration: none
+}
+
 #timeDiv {
     height: 100%;
     width: 100%;
