@@ -10,5 +10,9 @@ newTabApp.controller('weatherController', function($scope, $rootScope, WeatherSe
             $scope.alerts = data;
         });
     });
+
+    $scope.updateWeather = function() {
+        WeatherService.updateWeather();
+    }
 });
 

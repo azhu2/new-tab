@@ -2,8 +2,10 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
     var apiKey = api_keys.forecastioApiKey;
     var latitude;
     var longitude;
-    var weatherData = $q.defer();
-    var noaaWeatherData = $q.defer();
+    var weatherDataResolved = $q.defer();
+    var noaaWeatherDataResolved = $q.defer();
+    var weatherData;
+    var noaaWeatherData;
 
     var init = function() {
         GeolocationService.getLocation(function(coords) {
@@ -15,11 +17,13 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
 
     function updateWeather(){
         $resource('https://api.forecast.io/forecast/' + apiKey + '/' + latitude + ',' + longitude).get(function(data) {
-            weatherData.resolve(data);
+            weatherDataResolved.resolve();
+            weatherData = data;
             $rootScope.$broadcast('weatherChanged');
         });
         $resource('http://forecast.weather.gov/MapClick.php'  + '?lat=' + latitude + '&lon=' + longitude + '&FcstType=json').get(function(data) {
-            noaaWeatherData.resolve(data);
+            noaaWeatherDataResolved.resolve();
+            noaaWeatherData = data;
             $rootScope.$broadcast('noaaWeatherChanged');
         });
     };
@@ -33,11 +37,15 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
     }
 
     var getWeather = function(){
-        return weatherData.promise;
+        return weatherDataResolved.promise.then(function() {
+            return weatherData;
+        });
     };
 
     var getNoaaWeather = function(){
-        return noaaWeatherData.promise;
+        return noaaWeatherDataResolved.promise.then(function() {
+            return noaaWeatherData;
+        });
     };
 
     var getAlerts = function() {
@@ -60,7 +68,8 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
     return {
         getWeather : getWeather,
         getNoaaWeather : getNoaaWeather,
-        getAlerts : getAlerts
+        getAlerts : getAlerts,
+        updateWeather : updateWeather
     };
 });
 
