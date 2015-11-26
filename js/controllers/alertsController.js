@@ -10,8 +10,6 @@ newTabApp.controller('alertsController', function($scope, $rootScope, $modal, We
             templateUrl: '../../templates/alerts.html',
             scope: $scope
         });
-        console.log('open modal');
     };
-
 });
 
