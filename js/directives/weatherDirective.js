@@ -1,4 +1,4 @@
-newTabApp.directive('weatherSnippet', ['WeatherService', function(WeatherService) {
+newTabApp.directive('weatherSnippet', ['$rootScope', function($rootScope) {
     return {
         restrict: 'E',
         scope: {
@@ -11,7 +11,7 @@ newTabApp.directive('weatherSnippet', ['WeatherService', function(WeatherService
         templateUrl: '../../templates/weather.html',
         link: function(scope, element, attrs) {
             scope.updateWeather = function() {
-                WeatherService.updateWeather();
+                $rootScope.$broadcast('weatherUpdateQueued');
             };
         }
     };

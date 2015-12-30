@@ -11,8 +11,9 @@ newTabApp.controller('weatherController', function($scope, $rootScope, WeatherSe
         });
     });
 
-    $scope.updateWeather = function() {
-        WeatherService.updateWeather();
-    }
+    $rootScope.$on('weatherUpdateQueued', function() {
+        delete $scope.weather;
+        delete $scope.alerts;
+    });
 });
 

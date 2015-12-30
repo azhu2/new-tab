@@ -13,6 +13,9 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
             longitude = coords.longitude;
             updateWeather();
         });
+        $rootScope.$on('weatherUpdateQueued', function() {
+            updateWeather();
+        });
     };
 
     function updateWeather(){
