@@ -20,7 +20,8 @@
 <body ng-app="newTabApp" ng-controller="locationController">
 
     <div id="timeDiv" ng-controller="timeController" ng-style="{'background-color':timeString}">
-        <div id="locationDiv">
+        <div id="locationDiv" ng-if="!location || !latitude || !longitude">Loading...</div>
+        <div id="locationDiv" ng-if="location && latitude && longitude">
             {{location}} ({{latitude | latitudeFilter}}, {{longitude | longitudeFilter}})
         </div>
 
@@ -29,7 +30,8 @@
 
         <div id="weatherDiv" ng-controller="weatherController">
             <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary" show-precip-detail="true"></weather-snippet>
-            <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()" ng-controller="alertsController">
+            <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()" ng-controller="alertsController"
+                tooltip="Weather alerts" tooltip-placement="bottom" tooltip-animation="true" tooltip-popuup-delay="300">
                 <i class="fa fa-exclamation-triangle"></i>
             </a>
 
