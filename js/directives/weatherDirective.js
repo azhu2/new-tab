@@ -1,4 +1,4 @@
-newTabApp.directive('weatherSnippet', function() {
+newTabApp.directive('weatherSnippet', ['WeatherService', function(WeatherService) {
     return {
         restrict: 'E',
         scope: {
@@ -8,6 +8,11 @@ newTabApp.directive('weatherSnippet', function() {
             label : '@',            // Title to display
             showPrecipDetail : '='  // Show precipitation intensity?
         },
-        templateUrl: '../../templates/weather.html'
+        templateUrl: '../../templates/weather.html',
+        link: function(scope, element, attrs) {
+            scope.updateWeather = function() {
+                WeatherService.updateWeather();
+            };
+        }
     };
-});
+}]);

@@ -1,6 +1,9 @@
 <div class="weather-snippet">
     <div class="header">{{label}}</div>
-    <div class="icon"><i class="wi {{data.icon | iconFilter:day.sunriseTime:day.sunsetTime}}"></i></div>
+    <div class="icon">
+        <i class="wi {{data.icon | iconFilter:day.sunriseTime:day.sunsetTime}}" ng-click="updateWeather()"
+            tooltip="Click to refresh weather" tooltip-placement="bottom" tooltip-animation="true" tooltip-popuup-delay="300"></i>
+    </div>
     <div class="summary">{{summary}}</div>
     <div class="temperature" ng-if="data.temperature">
         <i class="wi wi-thermometer"></i> {{data.temperature | number:1}}<i class="wi wi-fahrenheit"></i>
