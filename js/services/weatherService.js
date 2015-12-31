@@ -18,7 +18,7 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
         });
     };
 
-    function updateWeather(){
+    var updateWeather = function(){
         $resource('https://api.forecast.io/forecast/' + apiKey + '/' + latitude + ',' + longitude).get(function(data) {
             weatherDataResolved.resolve();
             weatherData = data;
@@ -32,7 +32,7 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
     };
 
     // Refresh weather
-    function queueUpdate(){
+    var queueUpdate = function(){
         weatherTimeoutId = $timeout(function(){
             updateWeather();
             queueUpdate();

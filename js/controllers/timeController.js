@@ -7,19 +7,28 @@ newTabApp.controller('timeController', function($scope, $filter, $timeout, Timez
             time.setTime(utcTime + timezone * 1000);
         });
     });
-    queueUpdate();
 
-    function updateTime(){
+    var updateTime = function(){
         time.setTime(time.getTime() + 1000);
         $scope.time = $filter('date')(time, 'HH:mm:ss');
         $scope.date = $filter('date')(time, 'EEEE, MMMM d, yyyy');
         $scope.timeString = $filter('date')(time, 'HHmmss');
     }
 
-    function queueUpdate(){
-        timeoutId = $timeout(function(){
+    var queueUpdate = function(){
+        $timeout(function(){
             updateTime();
             queueUpdate();
         }, 1000);
     }
+
+    var queueHardUpdate = function() {
+        $timeout(function() {
+            time = new Date();
+            queueHardUpdate();
+        }, 60000);
+    }
+
+    queueUpdate();
+    queueHardUpdate();
 });
