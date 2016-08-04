@@ -3,6 +3,7 @@ newTabApp.controller('timeController', function($scope, $filter, $timeout, Timez
     $scope.$on('location-found', function(){
         TimezoneService.timezone($scope.latitude, $scope.longitude).get(function(timezoneData){
             var timezone = timezoneData.rawOffset + timezoneData.dstOffset;
+            console.log('Determined timezone offset: ' + timezone / 3600);
             var utcTime = time.getTime() + time.getTimezoneOffset() * 60000;
             time.setTime(utcTime + timezone * 1000);
         });

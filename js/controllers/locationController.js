@@ -4,6 +4,7 @@ newTabApp.controller('locationController', function($scope, GeolocationService, 
         var longitude = coords.longitude;
         $scope.latitude = latitude;
         $scope.longitude = longitude;
+        console.log('Location found: ' + $scope.latitude + ' | ' + $scope.longitude);
         $scope.$broadcast('location-found');
 
         GeocodingService.reverseGeocode(latitude, longitude).get(function(data){

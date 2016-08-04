@@ -22,11 +22,13 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
         $resource('https://api.forecast.io/forecast/' + apiKey + '/' + latitude + ',' + longitude).get(function(data) {
             weatherDataResolved.resolve();
             weatherData = data;
+            console.log('Weather updated.');
             $rootScope.$broadcast('weatherChanged');
         });
         $resource('http://forecast.weather.gov/MapClick.php'  + '?lat=' + latitude + '&lon=' + longitude + '&FcstType=json').get(function(data) {
             noaaWeatherDataResolved.resolve();
             noaaWeatherData = data;
+            console.log('NOAA alerts updated.');
             $rootScope.$broadcast('noaaWeatherChanged');
         });
     };
