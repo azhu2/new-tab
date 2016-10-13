@@ -19,7 +19,7 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
     };
 
     var updateWeather = function(){
-        $resource('https://api.forecast.io/forecast/' + apiKey + '/' + latitude + ',' + longitude).get(function(data) {
+        $resource('https://api.darksky.net/forecast/' + apiKey + '/' + latitude + ',' + longitude).get(function(data) {
             weatherDataResolved.resolve();
             weatherData = data;
             console.log('Weather updated.');

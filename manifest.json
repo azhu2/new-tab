@@ -5,5 +5,5 @@
   "chrome_url_overrides" : {
     "newtab": "new-tab.html"
   },
-  "permissions": ["geolocation", "https://api.forecast.io/*", "http://forecast.weather.gov/*"]
+  "permissions": ["geolocation", "https://api.darksky.net/*", "http://forecast.weather.gov/*"]
 }
