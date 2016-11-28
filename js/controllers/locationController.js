@@ -8,7 +8,11 @@ newTabApp.controller('locationController', function($scope, GeolocationService, 
         $scope.$broadcast('location-found');
 
         GeocodingService.reverseGeocode(latitude, longitude).get(function(data){
-            $scope.location = data.results[0].formatted_address;
+            if(data.results) {
+                $scope.location = data.results[0].formatted_address;
+            } else {
+                $scope.location = '(location unknown)';
+            }
         });
     });
 });
