@@ -5,4 +5,4 @@ Inspired by <a href="http://whatcolourisit.scn9a.org/">What colour is it?</a><br
 City/state information from Google's Geocoding API<br>
 Weather from <a href="https://developer.forecast.io/">Dark Sky Forecast API</a><br>
 Weather icons from <a href="http://erikflowers.github.io/weather-icons/">erikflowers/weather-icons</a><br>
-Weather alerts from <a href="http://graphical.weather.gov/xml/">Nationnal Weather Service API</a>
+Weather alerts from <a href="http://graphical.weather.gov/xml/">National Weather Service API</a>
