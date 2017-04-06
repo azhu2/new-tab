@@ -10,7 +10,8 @@ newTabApp.service('GeolocationService', function($resource){
         }
 
         function error(error){
-            console.warn('ERROR in retrieving geolocation (' + error.code + '): ' + error.message);
+            console.warn('ERROR in retrieving geolocation - (' + error.code + '): ' + error.message);
+            console.warn('Google Maps API may be down. Check https://developers.google.com/maps/documentation/javascript/examples/map-geolocation');
         }
     };
 });
