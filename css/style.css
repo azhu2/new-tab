@@ -19,7 +19,7 @@ a, a:hover {
     font-family: "open sans";
     color: white;
     text-align: center;
-    font-size: 1vw;
+    font-size: 2vmin;
 }
 
 #locationDiv {
@@ -94,7 +94,7 @@ a, a:hover {
 
 .modal-content {
     background: rgba(128, 128, 128, 0.7);
-    font-size: 1vw;
+    font-size: 1vmin;
     width: 12em;
     position: relative;
     left: 50%;
