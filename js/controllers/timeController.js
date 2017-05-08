@@ -12,13 +12,12 @@ newTabApp.controller('timeController', function($scope, $filter, $timeout, Timez
     }
 
     var hardUpdateTime = function() {
+        console.log('Hard time refresh');
         var newTime = new Date();
-        TimezoneService.timezone($scope.latitude, $scope.longitude).get(function(timezoneData){
-            console.log('Hard time refresh');
-            var timezone = timezoneData.rawOffset + timezoneData.dstOffset;     // s
-            console.log('Determined timezone offset: ' + timezone / 3600);
-            var utcTime = newTime.getTime() + newTime.getTimezoneOffset() * 60000;    // ms
-            time.setTime(utcTime + timezone * 1000);
+
+        TimezoneService.timezone($scope.latitude, $scope.longitude).then(function(timezoneOffset){
+            var utcTime = newTime.getTime() + newTime.getTimezoneOffset() * 60000;      // ms
+            time.setTime(utcTime + timezoneOffset * 1000);
         });
     };
 
@@ -33,7 +32,7 @@ newTabApp.controller('timeController', function($scope, $filter, $timeout, Timez
         $timeout(function() {
             hardUpdateTime();
             queueHardUpdate();
-        }, 60000);
+        }, 5000);
     };
 
     queueUpdate();

@@ -1,17 +1,23 @@
-newTabApp.service('GeolocationService', function($resource){
+newTabApp.service('GeolocationService', function($q, $resource){
+    // TODO Can I get rid of ugly callbacks?
     this.getLocation = function(callback){
-        if(navigator.geolocation)
+        var deferred = $q.defer();
+
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(success, error);
-        else
-            console.warn('Geolocation is not enabled in this browser.');
+        } else {
+            deferred.reject('Geolocation is not enabled in this browser.');
+        }
+
+        return deferred.promise;
 
         function success(position){
-            callback(position.coords);
+            deferred.resolve(position.coords);
         }
 
         function error(error){
-            console.warn('ERROR in retrieving geolocation - (' + error.code + '): ' + error.message);
-            console.warn('Google Maps API may be down. Check https://developers.google.com/maps/documentation/javascript/examples/map-geolocation');
+            deferred.reject('ERROR in retrieving geolocation - (' + error.code + '): ' + error.message +
+                ' - Google Maps API may be down. Check https://developers.google.com/maps/documentation/javascript/examples/map-geolocation');
         }
     };
 });

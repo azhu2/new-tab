@@ -3,7 +3,7 @@
     <title>New Tab</title>
 
     <script src="js/_lib/angular.min.js"></script>
-    <script src="js/_lib/angular-resource.js"></script>
+    <script src="js/_lib/angular-resource.min.js"></script>
     <script src="js/_lib/jquery.min.js"></script>
     <script src="js/_lib/bootstrap.min.js"></script>
     <script src="js/_lib/ui-bootstrap.min.js"></script>
@@ -17,20 +17,21 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body ng-app="newTabApp" ng-controller="locationController">
+<body ng-app="newTabApp" ng-controller="pageController">
 
-    <div id="timeDiv" ng-controller="timeController" ng-style="{'background-color':timeString}">
-        <div id="locationDiv" ng-if="!location || !latitude || !longitude">Loading...</div>
-        <div id="locationDiv" ng-if="location && latitude && longitude">
-            {{location}} ({{latitude | latitudeFilter}}, {{longitude | longitudeFilter}})
+    <div id="timeDiv" ng-style="{'background-color':timeString}">
+        <div id="locationDiv">
+            <span ng-if="!locationName">Loading...</span>
+            <span ng-if="location">{{locationName}}</span>
+             ({{location.latitude | latitudeFilter}}, {{location.longitude | longitudeFilter}})
         </div>
 
-        <div id="date">{{date}}</div>
-        <div id="time">{{time}}</div>
+        <div id="date">{{time | date:'EEEE, MMMM d, yyyy':timezone}}</div>
+        <div id="time">{{time | date:'HH:mm:ss':timezone}}</div>
 
-        <div id="weatherDiv" ng-controller="weatherController">
+        <div id="weatherDiv">
             <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary" show-precip-detail="true"></weather-snippet>
-            <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()" ng-controller="alertsController"
+            <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()"
                 tooltip="Weather alerts" tooltip-placement="bottom" tooltip-animation="true" tooltip-popuup-delay="300">
                 <i class="fa fa-exclamation-triangle"></i>
             </a>
@@ -60,11 +61,16 @@
     <script src="js/services/geocodingService.js"></script>
     <script src="js/services/weatherService.js"></script>
     <script src="js/services/timezoneService.js"></script>
+    <script src="js/controllers/pageController.js"></script>
     <script src="js/controllers/alertsController.js"></script>
     <script src="js/controllers/locationController.js"></script>
     <script src="js/controllers/timeController.js"></script>
     <script src="js/controllers/weatherController.js"></script>
     <script src="js/filters/iconFilter.js"></script>
     <script src="js/filters/latLongFilters.js"></script>
+    <script src="js/filters/leadingZeroFilter.js"></script>
+    <script src="js/filters/timezoneFilter.js"></script>
+    <script src="js/types/location.js"></script>
+    <script src="js/utils/locationUtils.js"></script>
 </body>
 </html>
