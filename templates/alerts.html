@@ -1,5 +1,4 @@
-<div id="alerts" ng-show="showAlertsModal">
-    <div ng-repeat="alert in alerts" class="weather-alert">
-        <a ng-href="{{alert.link}}" target="_blank">{{alert.text}}</a>
-    </div>
-</div>
+<a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()"
+        tooltip="Weather alerts" tooltip-placement="bottom" tooltip-animation="true" tooltip-popuup-delay="300">
+    <i class="fa fa-exclamation-triangle"></i>
+</a>

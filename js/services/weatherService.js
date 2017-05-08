@@ -1,60 +1,17 @@
 newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout, api_keys, config, GeolocationService){
-    var apiKey = api_keys.forecastioApiKey;
-    var latitude;
-    var longitude;
-    var weatherDataResolved = $q.defer();
-    var noaaWeatherDataResolved = $q.defer();
-    var weatherData;
-    var noaaWeatherData;
-
-    var init = function() {
-        GeolocationService.getLocation(function(coords) {
-            latitude = coords.latitude;
-            longitude = coords.longitude;
-            updateWeather();
-        });
-        $rootScope.$on('weatherUpdateQueued', function() {
-            updateWeather();
-        });
+    var getWeather = function(location) {
+        var apiKey = api_keys.forecastioApiKey;
+        return $resource('https://api.darksky.net/forecast/' + apiKey + '/' + location.latitude + ',' + location.longitude)
     };
 
-    var updateWeather = function(){
-        $resource('https://api.darksky.net/forecast/' + apiKey + '/' + latitude + ',' + longitude).get(function(data) {
-            weatherDataResolved.resolve();
-            weatherData = data;
-            console.log('Weather updated.');
-            $rootScope.$broadcast('weatherChanged');
-        });
-        $resource('http://forecast.weather.gov/MapClick.php'  + '?lat=' + latitude + '&lon=' + longitude + '&FcstType=json').get(function(data) {
-            noaaWeatherDataResolved.resolve();
-            noaaWeatherData = data;
-            console.log('NOAA alerts updated.');
-            $rootScope.$broadcast('noaaWeatherChanged');
-        });
+    var getNoaaWeather = function(location) {
+        return $resource('http://forecast.weather.gov/MapClick.php'  + '?lat=' + location.latitude + '&lon=' + location.longitude + '&FcstType=json');
     };
 
-    // Refresh weather
-    var queueUpdate = function(){
-        weatherTimeoutId = $timeout(function(){
-            updateWeather();
-            queueUpdate();
-        }, config.weatherRefreshInterval);
-    }
+    var getAlerts = function(location) {
+        var deferred = $q.defer();
 
-    var getWeather = function(){
-        return weatherDataResolved.promise.then(function() {
-            return weatherData;
-        });
-    };
-
-    var getNoaaWeather = function(){
-        return noaaWeatherDataResolved.promise.then(function() {
-            return noaaWeatherData;
-        });
-    };
-
-    var getAlerts = function() {
-        return getNoaaWeather().then(function(noaaData) {
+        getNoaaWeather(location).get(function(noaaData) {
             var hazards = noaaData.data.hazard;
             var alerts = [];
             for(var i = 0; i < hazards.length; i++){
@@ -63,18 +20,15 @@ newTabApp.factory('WeatherService', function($q, $rootScope, $resource, $timeout
                     link: noaaData.data.hazardUrl[i].replace('&amp;', '&')
                 });
             }
-            return alerts;
+            deferred.resolve(alerts);
         });
-    };
 
-    init();
-    queueUpdate();
+        return deferred.promise;
+    };
 
     return {
         getWeather : getWeather,
-        getNoaaWeather : getNoaaWeather,
-        getAlerts : getAlerts,
-        updateWeather : updateWeather
+        getAlerts : getAlerts
     };
 });
 
