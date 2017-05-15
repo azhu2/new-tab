@@ -1,6 +1,9 @@
 newTabApp.controller('pageController', function($filter, $q, $scope, $interval, GeocodingService, GeolocationService, Location, LocationUtils, TimezoneService, WeatherService) {
 
     function init() {
+        updateTime();
+        updateLocation();
+
         $interval(updateTime, 1000);
         $interval(updateLocation, 10000);
     };
