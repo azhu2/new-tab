@@ -37,11 +37,6 @@ a, a:hover {
     font-size: 10em;
     font-weight: 300;
     letter-spacing: .02em;
-    margin: 0.1em;
-}
-
-#weatherDiv {
-    margin-top: 2em;
 }
 
 #weatherDiv #current {
@@ -98,7 +93,7 @@ a, a:hover {
     width: 12em;
     position: relative;
     left: 50%;
-    top: 34em;
+    top: 32em;
 }
 
 #alerts .weather-alert {
