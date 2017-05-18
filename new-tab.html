@@ -31,7 +31,7 @@
 
         <div id="weatherDiv">
             <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary" show-precip-detail="true"></weather-snippet>
-            <a id="alertsIcon" href="#" ng-if="alerts.length > 0" ng-click="showAlerts()"
+            <a id="alertsIcon" href="#" ng-if="weatherAlerts.length > 0" ng-click="showAlerts()"
                 tooltip="Weather alerts" tooltip-placement="bottom" tooltip-animation="true" tooltip-popuup-delay="300">
                 <i class="fa fa-exclamation-triangle"></i>
             </a>
@@ -63,9 +63,6 @@
     <script src="js/services/timezoneService.js"></script>
     <script src="js/controllers/pageController.js"></script>
     <script src="js/controllers/alertsController.js"></script>
-    <script src="js/controllers/locationController.js"></script>
-    <script src="js/controllers/timeController.js"></script>
-    <script src="js/controllers/weatherController.js"></script>
     <script src="js/filters/iconFilter.js"></script>
     <script src="js/filters/latLongFilters.js"></script>
     <script src="js/filters/leadingZeroFilter.js"></script>
