@@ -31,10 +31,7 @@
 
         <div id="weatherDiv">
             <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary" show-precip-detail="true"></weather-snippet>
-            <a id="alertsIcon" href="#" ng-if="weatherAlerts.length > 0" ng-click="showAlerts()"
-                tooltip="Weather alerts" tooltip-placement="bottom" tooltip-animation="true" tooltip-popuup-delay="300">
-                <i class="fa fa-exclamation-triangle"></i>
-            </a>
+            <weather-alerts alerts="weatherAlerts"></weather-alerts>
 
             <div id="forecast">
                 <weather-snippet id="hour" label="Next Hour" data="weather.hourly.data[0]" day="weather.daily.data[0]" summary="weather.minutely.summary"></weather-snippet>
@@ -56,13 +53,13 @@
     <script src="js/newTab.js"></script>
     <script src="js/apiKeys.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/directives/weatherAlertsDirective.js"></script>
     <script src="js/directives/weatherDirective.js"></script>
     <script src="js/services/geolocationService.js"></script>
     <script src="js/services/geocodingService.js"></script>
     <script src="js/services/weatherService.js"></script>
     <script src="js/services/timezoneService.js"></script>
     <script src="js/controllers/pageController.js"></script>
-    <script src="js/controllers/alertsController.js"></script>
     <script src="js/filters/iconFilter.js"></script>
     <script src="js/filters/latLongFilters.js"></script>
     <script src="js/filters/leadingZeroFilter.js"></script>

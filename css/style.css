@@ -94,11 +94,11 @@ a, a:hover {
 
 .modal-content {
     background: rgba(128, 128, 128, 0.7);
-    font-size: 1vmin;
+    font-size: 2vmin;
     width: 12em;
     position: relative;
     left: 50%;
-    top: 35em;
+    top: 34em;
 }
 
 #alerts .weather-alert {
