@@ -30,6 +30,8 @@ newTabApp.controller('pageController',
                 console.info('Detected new location: ' + location.latitude + ',' + location.longitude);
                 updateLocationBasedData();
             }
+        }).catch(function(exception) {
+            console.error(exception);
         });
     };
 
