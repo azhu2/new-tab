@@ -1,4 +1,4 @@
-newTabApp.directive('weatherAlerts', ['$modal', '$rootScope', function($modal, $rootScope) {
+newTabApp.directive('weatherAlerts', ['$uibModal', '$rootScope', function($uibModal, $rootScope) {
     return {
         restrict: 'E',
         scope: {
@@ -7,7 +7,7 @@ newTabApp.directive('weatherAlerts', ['$modal', '$rootScope', function($modal, $
         templateUrl: '../../templates/alerts.html',
         controller: function($scope) {
             $scope.showAlerts = function() {
-                $modal.open({
+                $uibModal.open({
                     templateUrl: '../../templates/alertsModal.html',
                     scope: $scope
                 });

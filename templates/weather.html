@@ -4,7 +4,7 @@
     <div ng-if="data">
         <div class="icon">
             <i class="wi {{data.icon | iconFilter:day.sunriseTime:day.sunsetTime}}" ng-click="updateWeather()"
-                tooltip="Click to refresh weather" tooltip-placement="bottom" tooltip-animation="true" tooltip-popuup-delay="300"></i>
+                uib-tooltip="Click to refresh weather" tooltip-placement="bottom" tooltip-animation="true" tooltip-popuup-delay="300"></i>
         </div>
         <div class="summary">{{summary}}</div>
         <div class="temperature" ng-if="data.temperature">
@@ -12,17 +12,17 @@
             <span class="apparent">({{data.apparentTemperature | number:1}}<i class="wi wi-fahrenheit"></i>)</span>
         </div>
         <div class="temperature" ng-if="data.temperatureMax && data.temperatureMin">
-            <a tooltip="Temperature max time: {{data.temperatureMaxTime * 1000 | date:'HH:mm'}}" tooltip-placement="bottom" tooltip-animation="true" tooltip-popup-delay="300">
+            <a uib-tooltip="Temperature max time: {{data.temperatureMaxTime * 1000 | date:'HH:mm'}}" tooltip-placement="bottom" tooltip-animation="true" tooltip-popup-delay="300">
                 <i class="min wi wi-thermometer"></i> {{data.temperatureMax | number:0}}<i class="wi wi-fahrenheit"></i>
             </a>
             /
-            <a tooltip="Temperature min time: {{data.temperatureMinTime * 1000 | date:'HH:mm'}}" tooltip-placement="bottom" tooltip-animation="true" tooltip-popup-delay="300">
+            <a uib-tooltip="Temperature min time: {{data.temperatureMinTime * 1000 | date:'HH:mm'}}" tooltip-placement="bottom" tooltip-animation="true" tooltip-popup-delay="300">
                 {{data.temperatureMin | number:0}}<i class="wi wi-fahrenheit"></i>
             </a>
         </div>
         <div class="wind">
             <i class="wi wi-strong-wind"></i>
-            <i class="wi wi-wind from-{{data.windBearing}}-deg" tooltip="Wind bearing: {{data.windBearing}}" tooltip-placement="bottom" tooltip-animation="true" tooltip-popup-delay="300"></i>
+            <i class="wi wi-wind from-{{data.windBearing}}-deg" uib-tooltip="Wind bearing: {{data.windBearing}}" tooltip-placement="bottom" tooltip-animation="true" tooltip-popup-delay="300"></i>
             {{data.windSpeed | number:1}} mph
         </div>
         <div class="precipitation">
