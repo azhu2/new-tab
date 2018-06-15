@@ -11,6 +11,11 @@ html, body {
     font-family: 'Open Sans';
     src: url('../fonts/OpenSans-Regular.ttf');
 }
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    src: url('../fonts/OpenSans-Light.ttf');
+}
 
 a, a:hover {
     color: white;
@@ -41,7 +46,7 @@ a, a:hover {
 
 #time {
     font-size: 10em;
-    font-weight: 300;
+    font-weight: lighter;
     letter-spacing: .02em;
 }
 
