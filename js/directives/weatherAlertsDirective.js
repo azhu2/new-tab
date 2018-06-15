@@ -4,11 +4,11 @@ newTabApp.directive('weatherAlerts', ['$uibModal', '$rootScope', function($uibMo
         scope: {
             alerts : '='
         },
-        templateUrl: '../../templates/alerts.html',
+        templateUrl: 'templates/alerts.html',
         controller: function($scope) {
             $scope.showAlerts = function() {
                 $uibModal.open({
-                    templateUrl: '../../templates/alertsModal.html',
+                    templateUrl: '.emplates/alertsModal.html',
                     scope: $scope
                 });
             };
