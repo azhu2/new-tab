@@ -1,0 +1,69 @@
+<html>
+<head>
+    <title>New Tab</title>
+
+    <script src="js/_lib/angular.min.js"></script>
+    <script src="js/_lib/angular-resource.min.js"></script>
+    <script src="js/_lib/jquery.min.js"></script>
+    <script src="js/_lib/bootstrap.min.js"></script>
+    <script src="js/_lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+    <link rel="stylesheet" href="css/_lib/opensans.css" type="text/css">
+
+    <link rel="stylesheet" href="css/_lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/_lib/font-awesome.min.css">
+    <link rel="stylesheet" href="css/_lib/weather-icons.css">
+    <link rel="stylesheet" href="css/_lib/weather-icons-wind.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="newTabApp" ng-controller="pageController">
+
+    <div id="timeDiv" ng-style="{'background-color':timeString}">
+        <div id="locationDiv">
+            <span ng-if="!locationName">Loading...</span>
+            <span ng-if="location">{{locationName}}</span>
+             ({{location.latitude | latitudeFilter}}, {{location.longitude | longitudeFilter}})
+        </div>
+
+        <div id="date">{{time | date:'EEEE, MMMM d, yyyy':timezone}}</div>
+        <div id="time">{{time | date:'HH:mm:ss':timezone}}</div>
+
+        <div id="weatherDiv">
+            <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary" show-precip-detail="true"></weather-snippet>
+            <weather-alerts alerts="weatherAlerts"></weather-alerts>
+
+            <div id="forecast">
+                <weather-snippet id="hour" label="Next Hour" data="weather.hourly.data[0]" day="weather.daily.data[0]" summary="weather.minutely.summary"></weather-snippet>
+                <weather-snippet id="today" label="Today" data="weather.daily.data[0]" summary="weather.daily.data[0].summary"></weather-snippet>
+                <weather-snippet id="tomorrow" label="Tomorrow" data="weather.daily.data[1]" summary="weather.daily.data[1].summary"></weather-snippet>
+            </div>
+        </div>
+
+        <div id="about">
+            <div>
+                Built by <a href="https://www.linkedin.com/in/alextzhu">Alexander Zhu</a> | <a href="https://github.com/azhu2/new-tab">Source</a> | <a href="mailto:alex.t.zhu+newtab@gmail.com?subject=New Tab">Contact</a>
+            </div>
+            <div>
+                Powered by <a href="http://darksky.net/poweredby/">Dark Sky</a> | Inspired by <a href="http://whatcolourisit.scn9a.org/">What colour is it?</a> | Weather icons from <a href="http://erikflowers.github.io/weather-icons/">Erik Flowers</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/newTab.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/directives/weatherAlertsDirective.js"></script>
+    <script src="js/directives/weatherDirective.js"></script>
+    <script src="js/services/geolocationService.js"></script>
+    <script src="js/services/geocodingService.js"></script>
+    <script src="js/services/weatherService.js"></script>
+    <script src="js/services/timezoneService.js"></script>
+    <script src="js/controllers/pageController.js"></script>
+    <script src="js/filters/iconFilter.js"></script>
+    <script src="js/filters/latLongFilters.js"></script>
+    <script src="js/filters/leadingZeroFilter.js"></script>
+    <script src="js/filters/timezoneFilter.js"></script>
+    <script src="js/types/location.js"></script>
+    <script src="js/utils/locationUtils.js"></script>
+</body>
+</html>
