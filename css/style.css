@@ -3,6 +3,13 @@ html, body {
     margin: 0;
     padding: 0;
     -webkit-user-select: none;
+
+    font-family: 'Open Sans';
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular.ttf');
 }
 
 a, a:hover {
@@ -16,7 +23,6 @@ a, a:hover {
     position: absolute;
     top: 0;
 
-    font-family: "open sans";
     color: white;
     text-align: center;
     font-size: 2vmin;
