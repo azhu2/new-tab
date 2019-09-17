@@ -27,14 +27,24 @@
         <div id="date">{{time | date:'EEEE, MMMM d, yyyy':timezone}}</div>
         <div id="time">{{time | date:'HH:mm:ss':timezone}}</div>
 
-        <div id="weatherDiv">
-            <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary" show-precip-detail="true"></weather-snippet>
-            <weather-alerts alerts="weatherAlerts"></weather-alerts>
+        <div id="location-gated-content" ng-switch="permissionsGranted">
+            <div id="weatherDiv" ng-switch-when="true">
+                <weather-snippet id="current" data="weather.currently" day="weather.daily.data[0]" summary="weather.currently.summary" show-precip-detail="true"></weather-snippet>
+                <weather-alerts alerts="weatherAlerts"></weather-alerts>
 
-            <div id="forecast">
-                <weather-snippet id="hour" label="Next Hour" data="weather.hourly.data[0]" day="weather.daily.data[0]" summary="weather.minutely.summary"></weather-snippet>
-                <weather-snippet id="today" label="Today" data="weather.daily.data[0]" summary="weather.daily.data[0].summary"></weather-snippet>
-                <weather-snippet id="tomorrow" label="Tomorrow" data="weather.daily.data[1]" summary="weather.daily.data[1].summary"></weather-snippet>
+                <div id="forecast">
+                    <weather-snippet id="hour" label="Next Hour" data="weather.hourly.data[0]" day="weather.daily.data[0]" summary="weather.minutely.summary"></weather-snippet>
+                    <weather-snippet id="today" label="Today" data="weather.daily.data[0]" summary="weather.daily.data[0].summary"></weather-snippet>
+                    <weather-snippet id="tomorrow" label="Tomorrow" data="weather.daily.data[1]" summary="weather.daily.data[1].summary"></weather-snippet>
+                </div>
+            </div>
+            <div id="permissionsDiv" ng-switch-default>
+                <p>
+                    This site requires location permissions to fetch weather and location data.
+                </p>
+                <p>
+                    If you don't see a permissions prompt, then you previously denied permissions to this site. The Permissions API doesn't yet allow us to re-request it, so please click the lock icon to the left of the URL bar to open up the menu to allow location permissions.
+                </ul>
             </div>
         </div>
 

@@ -136,3 +136,7 @@ a, a:hover {
     background: black;
     opacity: 0.9;
 }
+
+#permissionsDiv {
+    padding: 2em;
+}
